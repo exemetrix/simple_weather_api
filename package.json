@@ -1,0 +1,17 @@
+{
+  "name": "weather_api",
+  "version": "1.0.0",
+  "description": "Simple weather API project",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Ricardo Vaz",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}
