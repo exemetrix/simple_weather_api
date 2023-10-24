@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "removeComments": true,
+        "moduleResolution": "Bundler",
+        "target": "ES6",
+        "sourceMap": true,
+        "outDir": "dist",
+        "skipLibCheck": true,
+        "strictNullChecks": true
+    },
+    "exclude": [
+        "node_modules/",
+        ".vscode"
+    ],
+    "include": [
+        "src/**/*.ts"
+    ]
+}
