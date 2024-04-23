@@ -1,7 +1,7 @@
-import 'dotenv/config'; // .env file
+import 'dotenv/config'; // .env config initialization
 import express from 'express'; // Express framework
 import helmet from 'helmet';
-import db from './config/db'; // DB connection and helpers
+// import db from './config/db'; // DB connection and helpers
 
 const app = express();
 

@@ -1,5 +1,5 @@
-// test
 /*
+Initial config generated with "npm init @eslint/config@0.4.6"
 {
     "env": {
         "browser": true,
@@ -14,6 +14,7 @@
     }
 }
 */
+// Config imported from GA project
 {
     "root": true,
     "parser": "@typescript-eslint/parser",

@@ -1,0 +1,6 @@
+{
+  "restartable": "rs",
+  "delay": 1500,
+  "ignore": [".vscode", ".git", "node_modules/**/node_modules", "prisma"],
+  "watch": [".env", "src"]
+}
