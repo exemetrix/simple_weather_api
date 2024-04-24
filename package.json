@@ -15,6 +15,7 @@
   "author": "Ricardo Vaz",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^5.13.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "helmet": "^7.0.0",
@@ -33,6 +34,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "nodemon": "^3.1.0",
     "prettier": "^3.2.5",
+    "prisma": "^5.13.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },
