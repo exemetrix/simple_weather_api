@@ -1,22 +1,26 @@
 import { Request, Response /*, NextFunction */ } from 'express';
+import { validationResult, matchedData } from 'express-validator';
 import locationModel from '../models/locationModel';
 
 function locationController() {
   const locationModelInst = locationModel();
 
   async function getLocation(req: Request, res: Response) {
-    const { id } = req.query;
+    const validationErrors = validationResult(req);
 
-    if (id == null) {
-      return res.sendStatus(400);
+    // Validation errors found on request query attributes
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({ errors: validationErrors.array() });
     }
 
+    const validatedData = matchedData(req);
+
     const locationData = await locationModelInst.getLocation(
-      parseInt(id as string, 10)
+      parseInt(validatedData.id as string, 10)
     );
     return locationData
       ? res.status(200).json(locationData)
-      : res.status(500).json(undefined);
+      : res.sendStatus(500);
   }
 
   return { getLocation };
