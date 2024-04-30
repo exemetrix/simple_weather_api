@@ -23,7 +23,14 @@ function locationController() {
       : res.sendStatus(500);
   }
 
-  return { getLocation };
+  async function getLocations(req: Request, res: Response) {
+    const locationsData = await locationModelInst.getLocations();
+    return locationsData
+      ? res.status(200).json(locationsData)
+      : res.sendStatus(500);
+  }
+
+  return { getLocation, getLocations };
 }
 
 export default locationController;

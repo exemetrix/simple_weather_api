@@ -12,6 +12,8 @@ function locationRouter() {
     controller.getLocation
   );
 
+  router.get('/all', controller.getLocations);
+
   return router;
 }
 
