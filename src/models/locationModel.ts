@@ -59,8 +59,7 @@ function locationModel() {
         data: {
           latitude,
           longitude,
-          name,
-          slug
+          name
         }
       });
       return updatedLocation != null;
