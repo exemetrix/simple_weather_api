@@ -37,9 +37,11 @@ function locationRouter() {
     body('longitude', 'Longitude value must be within -180 and 180 degrees')
       .isFloat({ min: -180, max: 180 })
       .optional(),
-    body('name', 'Location name must have a maximum of 220 chars').isLength({
-      max: 220
-    }),
+    body('name', 'Location name must have a maximum of 220 chars')
+      .isLength({
+        max: 220
+      })
+      .optional(),
     controller.updateLocation
   );
   router.delete(
