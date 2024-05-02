@@ -7,10 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model location {
+model Location {
   id        Int     @id @default(autoincrement())
   latitude  Decimal @db.Decimal(4, 2)
   longitude Decimal @db.Decimal(5, 2)
-  name      String  @db.VarChar(220)
-  slug      String  @db.VarChar(255)
+  name      String? @db.VarChar(220)
+  slug      String  @db.VarChar(255) @unique
 }

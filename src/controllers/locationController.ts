@@ -16,7 +16,7 @@ function locationController() {
     const validatedData = matchedData(req);
 
     const locationData = await locationModelInst.getLocation(
-      parseInt(validatedData.id as string, 10)
+      validatedData.slug
     );
     return locationData
       ? res.status(200).json(locationData)
@@ -30,7 +30,54 @@ function locationController() {
       : res.sendStatus(500);
   }
 
-  return { getLocation, getLocations };
+  async function createLocation(req: Request, res: Response) {
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({ errors: validationErrors.array() });
+    }
+    const validatedData = matchedData(req);
+    const createdLocation = await locationModelInst.createLocation(
+      validatedData.latitude,
+      validatedData.longitude,
+      validatedData.slug
+    );
+    return res.sendStatus(createdLocation ? 200 : 500);
+  }
+
+  async function updateLocation(req: Request, res: Response) {
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({ errors: validationErrors.array() });
+    }
+    const validatedData = matchedData(req);
+    const updatedLocation = await locationModelInst.updateLocation(
+      validatedData.latitude,
+      validatedData.longitude,
+      validatedData.name,
+      validatedData.slug
+    );
+    return res.sendStatus(updatedLocation ? 200 : 500);
+  }
+
+  async function deleteLocation(req: Request, res: Response) {
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({ errors: validationErrors.array() });
+    }
+    const validatedData = matchedData(req);
+    const deletedLocation = await locationModelInst.deleteLocation(
+      validatedData.slug
+    );
+    return res.sendStatus(deletedLocation ? 200 : 500);
+  }
+
+  return {
+    getLocation,
+    getLocations,
+    createLocation,
+    updateLocation,
+    deleteLocation
+  };
 }
 
 export default locationController;
