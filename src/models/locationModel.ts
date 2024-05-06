@@ -132,7 +132,6 @@ function locationModel() {
       const chunk = forecastData.slice(i, i + chunkSize);
       const chunkDate = new Date(fetchDate);
       chunkDate.setUTCDate(chunkDate.getUTCDate() + chunkDay);
-      console.log(chunkDate.toISOString());
 
       forecastResult.push({
         date: chunkDate.toISOString().split('T')[0],
