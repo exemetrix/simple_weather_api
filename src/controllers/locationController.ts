@@ -71,9 +71,21 @@ function locationController() {
     return res.sendStatus(deletedLocation ? 200 : 500);
   }
 
+  async function getForecast(req: Request, res: Response) {
+    const validationErrors = validationResult(req);
+    if (!validationErrors.isEmpty()) {
+      return res.status(400).json({ errors: validationErrors.array() });
+    }
+    const validatedData = matchedData(req);
+    return res
+      .status(200)
+      .json(await locationModelInst.getForecast(validatedData.slug));
+  }
+
   return {
     getLocation,
     getLocations,
+    getForecast,
     createLocation,
     updateLocation,
     deleteLocation

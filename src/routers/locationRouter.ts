@@ -12,6 +12,30 @@ function locationRouter() {
     controller.getLocation
   );
   router.get('/all', controller.getLocations);
+  router.get(
+    '/forecast',
+    query('slug', 'Location slug must not be empty').notEmpty(),
+    query('min_date', 'Start date must have YYYY-MM-DD format')
+      .notEmpty()
+      .isDate({
+        format: 'YYYY-MM-DD',
+        strictMode: true,
+        delimiters: ['-']
+      }),
+    query('max_date', 'End date must have YYYY-MM-DD format')
+      .notEmpty()
+      .isDate({
+        format: 'YYYY-MM-DD',
+        strictMode: true,
+        delimiters: ['-']
+      }),
+    query('min_date', 'Start date must start before end date').custom(
+      (startDate, { req }) =>
+        new Date(startDate) <
+        new Date(req?.query?.max_date ? req?.query?.max_date : 0)
+    ),
+    controller.getForecast
+  );
   router.post(
     '',
     body('slug').notEmpty().isLength({ max: 255 }),
