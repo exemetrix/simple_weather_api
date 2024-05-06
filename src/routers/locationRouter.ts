@@ -36,6 +36,7 @@ function locationRouter() {
     ),
     controller.getForecast
   );
+  router.put('/forecasts', controller.updateForecasts);
   router.post(
     '',
     body('slug').notEmpty().isLength({ max: 255 }),

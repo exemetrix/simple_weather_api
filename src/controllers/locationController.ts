@@ -79,13 +79,26 @@ function locationController() {
     const validatedData = matchedData(req);
     return res
       .status(200)
-      .json(await locationModelInst.getForecast(validatedData.slug));
+      .json(
+        await locationModelInst.getForecast(
+          validatedData.slug,
+          validatedData.min_date,
+          validatedData.max_date
+        )
+      );
+  }
+
+  async function updateForecasts(req: Request, res: Response) {
+    return res.sendStatus(
+      (await locationModelInst.updateForecasts()) ? 200 : 500
+    );
   }
 
   return {
     getLocation,
     getLocations,
     getForecast,
+    updateForecasts,
     createLocation,
     updateLocation,
     deleteLocation
