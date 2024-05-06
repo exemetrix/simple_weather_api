@@ -8,9 +8,21 @@ datasource db {
 }
 
 model Location {
-  id        Int     @id @default(autoincrement())
-  latitude  Decimal @db.Decimal(4, 2)
-  longitude Decimal @db.Decimal(5, 2)
-  name      String? @db.VarChar(220)
-  slug      String  @db.VarChar(255) @unique
+  id                Int                @id @default(autoincrement())
+  latitude          Decimal            @db.Decimal(4, 2)
+  longitude         Decimal            @db.Decimal(5, 2)
+  name              String?            @db.VarChar(220)
+  slug              String             @db.VarChar(255) @unique
+  locationForecast  LocationForecast[]
+}
+
+model LocationForecast {
+  id         Int      @id @default(autoincrement())
+  locationId Int
+  date       DateTime @db.Date
+  minCelsius Decimal  @db.Decimal(4,2)
+  maxCelsius Decimal  @db.Decimal(4,2)
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@unique([locationId, date])
 }
