@@ -87,8 +87,8 @@ function locationModel() {
     return {
       data: locationData.locationForecast.map((d) => ({
         date: d.date.toISOString().split('T')[0],
-        'min-forecasted': d.minCelsius,
-        'max-forecasted': d.maxCelsius
+        'min-forecasted': d.minCelsius.toNumber(),
+        'max-forecasted': d.maxCelsius.toNumber()
       })),
       message: `Forecast data successfully retrieved for ${minDate} - ${maxDate} interval`
     };
