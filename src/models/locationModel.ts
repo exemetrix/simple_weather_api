@@ -25,6 +25,14 @@ function locationModel() {
           slug
         }
       });
+
+      // Fetch weather forecast for the newly created location
+      await updateForecast(
+        createdLocation.id,
+        createdLocation.latitude,
+        createdLocation.longitude
+      );
+
       return createdLocation != null;
     } catch (e) {
       console.error(e);
