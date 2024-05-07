@@ -2,6 +2,7 @@ import 'dotenv/config'; // .env config initialization
 import express from 'express'; // Express framework
 import helmet from 'helmet';
 import locationRouter from './routers/locationRouter';
+import { updateForecastsJob } from './config/cron-jobs';
 // import db from './config/db'; // DB connection and helpers
 
 const app = express();
@@ -20,3 +21,13 @@ app.listen(parseInt(process.env.EXPRESS_SERVER_PORT!, 10), () => {
     `Server running and listening on port ${process.env.EXPRESS_SERVER_PORT}`
   );
 });
+
+// Start forecasts update job
+if (process.env.USE_CRON_UPDATE === 'true') {
+  updateForecastsJob.start();
+  console.log(
+    'Forecasts update job will fire on ' +
+      updateForecastsJob.nextDate().toFormat('yyyy-MM-dd HH:mm:ss') +
+      ' (local time)'
+  );
+}

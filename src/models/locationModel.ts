@@ -9,7 +9,7 @@ function locationModel() {
   // 7 Timer Weather API axios connection
   const sevenTimerAPI = axios.create({
     baseURL: 'https://www.7timer.info/bin/astro.php',
-    timeout: 3000
+    timeout: 1000 * 10
   });
 
   async function createLocation(
@@ -128,6 +128,7 @@ function locationModel() {
     const locationsData = await prisma.location.findMany({
       select: {
         id: true,
+        slug: true,
         latitude: true,
         longitude: true
       }
@@ -140,14 +141,14 @@ function locationModel() {
 
     // Loop stored locations
     for (let i = 0; i < locationsData.length; i++) {
-      // Cal update forecast function here
+      console.log(`Updating forecast for "${locationsData[i].slug}"`);
       await updateForecast(
         locationsData[i].id,
         locationsData[i].latitude,
         locationsData[i].longitude
       );
     }
-
+    console.log('Forecasts successfully updated');
     return true;
   }
 

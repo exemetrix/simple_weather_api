@@ -22,7 +22,7 @@ model LocationForecast {
   date       DateTime @db.Date
   minCelsius Decimal  @db.Decimal(4,2)
   maxCelsius Decimal  @db.Decimal(4,2)
-  location   Location @relation(fields: [locationId], references: [id])
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
 
   @@unique([locationId, date])
 }
