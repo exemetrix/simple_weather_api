@@ -88,7 +88,7 @@ function locationModel() {
     if (locationData.locationForecast.length === 0) {
       return {
         data: null,
-        message: `Forecast data not available for ${minDate} - ${maxDate} interval`
+        message: `Forecast data not available for ${minDate} - ${maxDate}`
       };
     }
 
@@ -98,7 +98,7 @@ function locationModel() {
         'min-forecasted': d.minCelsius.toNumber(),
         'max-forecasted': d.maxCelsius.toNumber()
       })),
-      message: `Forecast data successfully retrieved for ${minDate} - ${maxDate} interval`
+      message: `Forecast data successfully retrieved for ${minDate} - ${maxDate}`
     };
   }
 

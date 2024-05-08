@@ -31,7 +31,7 @@ function locationRouter() {
       }),
     query('min_date', 'Start date must start before end date').custom(
       (startDate, { req }) =>
-        new Date(startDate) <
+        new Date(startDate) <=
         new Date(req?.query?.max_date ? req?.query?.max_date : 0)
     ),
     controller.getForecast
