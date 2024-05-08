@@ -73,6 +73,9 @@ function locationModel() {
               gte: new Date(minDate).toISOString(),
               lte: new Date(maxDate).toISOString()
             }
+          },
+          orderBy: {
+            date: 'asc'
           }
         }
       }
