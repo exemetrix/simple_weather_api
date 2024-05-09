@@ -26,7 +26,7 @@ app.listen(parseInt(process.env.EXPRESS_SERVER_PORT!, 10), () => {
 if (process.env.USE_CRON_UPDATE === 'true') {
   updateForecastsJob.start();
   console.log(
-    'Forecasts update job will fire on ' +
+    'Forecasts update job will run on ' +
       updateForecastsJob.nextDate().toFormat('yyyy-MM-dd HH:mm:ss') +
       ' (local time)'
   );
